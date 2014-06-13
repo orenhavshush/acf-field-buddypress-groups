@@ -1,6 +1,6 @@
-=== Advanced Custom Fields: FIELD_LABEL Field ===
-Contributors: AUTHOR_NAME
-Tags: PLUGIN_TAGS
+=== Advanced Custom Fields: Buddypress Groups Field ===
+Contributors: Satellite Jones
+Tags: Buddypress, Groups, Buddypress Groups, ACF, Advanced Custom Fields
 Requires at least: 3.5
 Tested up to: 3.8.1
 Stable tag: trunk
@@ -11,7 +11,7 @@ DESCRIPTION
 
 == Description ==
 
-EXTENDED_DESCRIPTION
+This plugin provides a Buddypress Groups field for Advanced Custom Fields. The field can be configured to display all groups or only groups of which the active user is a member.
 
 = Compatibility =
 
@@ -21,9 +21,9 @@ This ACF field type is compatible with:
 
 == Installation ==
 
-1. Copy the `acf-FIELD_NAME` folder into your `wp-content/plugins` folder
-2. Activate the FIELD_LABEL plugin via the plugins admin page
-3. Create a new field via ACF and select the FIELD_LABEL type
+1. Copy the `acf-buddypress_groups` folder into your `wp-content/plugins` folder
+2. Activate the Buddypress Groups plugin via the plugins admin page
+3. Create a new field via ACF and select the Buddypress Groups type
 4. Please refer to the description for more info regarding the field type settings
 
 == Changelog ==
