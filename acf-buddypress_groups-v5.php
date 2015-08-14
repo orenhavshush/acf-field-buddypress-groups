@@ -36,7 +36,7 @@ class acf_field_buddypress_groups extends acf_field {
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
 		
-		$this->category = 'basic';
+		$this->category = 'relational';
 		
 		
 		/*
@@ -44,7 +44,8 @@ class acf_field_buddypress_groups extends acf_field {
 		*/
 		
 		$this->defaults = array(
-			'font_size'	=> 14,
+			'groups' => 0,
+			'multiple' => 1,
 		);
 		
 		
@@ -89,13 +90,35 @@ class acf_field_buddypress_groups extends acf_field {
 		*  Please note that you must also have a matching $defaults value for the field name (font_size)
 		*/
 		
+		// acf_render_field_setting( $field, array(
+		// 	'label'			=> __('Font Size','acf-buddypress_groups'),
+		// 	'instructions'	=> __('Customise the input font size','acf-buddypress_groups'),
+		// 	'type'			=> 'number',
+		// 	'name'			=> 'font_size',
+		// 	'prepend'		=> 'px',
+		// ));	
+
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Font Size','acf-buddypress_groups'),
-			'instructions'	=> __('Customise the input font size','acf-buddypress_groups'),
-			'type'			=> 'number',
-			'name'			=> 'font_size',
-			'prepend'		=> 'px',
+			'label'			=> __('Display all groups?','acf-buddypress_groups'),
+			'type'			=> 'radio',
+			'name'			=> 'groups',
+			'choices'	=>	array(
+				1	=>	__("All Groups",'acf'),
+				0	=>	__("Member Groups",'acf'),
+			),
+			'layout'	=>	'horizontal',
 		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Select multiple values?','acf-buddypress_groups'),
+			'type'			=> 'radio',
+			'name'			=> 'multiple',
+			'choices'	=>	array(
+				1	=>	__("Yes",'acf'),
+				0	=>	__("No",'acf'),
+			),
+			'layout'	=>	'horizontal',
+		));		
 
 	}
 	
@@ -124,18 +147,42 @@ class acf_field_buddypress_groups extends acf_field {
 		*  This will show what data is available
 		*/
 		
-		echo '<pre>';
-			print_r( $field );
-		echo '</pre>';
+		// echo '<pre>';
+		// 	print_r( $field );
+		// echo '</pre>';
 		
 		
 		/*
 		*  Create a simple text input using the 'font_size' setting.
 		*/
 		
+		/*
 		?>
 		<input type="text" name="<?php echo esc_attr($field['name']) ?>" value="<?php echo esc_attr($field['value']) ?>" style="font-size:<?php echo $field['font_size'] ?>px;" />
 		<?php
+		*/
+
+		// defaults?
+		$field = array_merge($this->defaults, $field);
+
+		// Change Field into a select
+		$field['type'] = 'select';
+		$field['choices'] = array();
+
+		// set the user ID if you want to return only groups that this user is a member of.
+		$user_id = ( $field['groups'] == 1 ) ? FALSE : get_current_user_id();
+		$args = array( 'per_page' => 999, 'user_id' => $user_id );		
+		
+		if ( bp_has_groups( $args ) ) { 
+			while ( bp_groups() ) {
+				bp_the_group();
+				$field['choices'][ bp_get_group_id() ] = bp_get_group_name();
+			}
+		}
+
+		// create field
+		do_action('acf/render_field/type=select', $field );
+
 	}
 	
 		
@@ -153,7 +200,7 @@ class acf_field_buddypress_groups extends acf_field {
 	*  @return	n/a
 	*/
 
-	/*
+	
 	
 	function input_admin_enqueue_scripts() {
 		
@@ -172,7 +219,7 @@ class acf_field_buddypress_groups extends acf_field {
 		
 	}
 	
-	*/
+	
 	
 	
 	/*
