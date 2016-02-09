@@ -6,7 +6,7 @@ Welcome to the Advanced Custom Fields Buddypress Groups field.
 
 ### Description
 
-This plugin provides a Buddypress Groups field for Advanced Custom Fields. The field can be configured to display all groups or only groups of which the active user is a member.
+This plugin provides a Buddypress Groups field for Advanced Custom Fields. The field can be configured to display all groups or only groups of which the active user is a member. You can choose to return the Group ID(s) or Group object(s) (ACF 5 only).
 
 ### Compatibility
 
