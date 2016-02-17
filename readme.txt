@@ -28,6 +28,9 @@ This ACF field type is compatible with:
 
 == Changelog ==
 
+= 1.0.4 =
+* Added documentation for template usage
+
 = 1.0.3 =
 * Added return_format option for ACF 4
 

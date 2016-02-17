@@ -387,6 +387,9 @@ class acf_field_buddypress_groups extends acf_field {
 				'include' => $value
 			));
 
+			// groups_get_groups return array( 'groups' => $paged_groups, 'total' => $total_groups );
+			$value = $value['groups'];
+
 		}
 
 
