@@ -25,14 +25,15 @@ class acf_field_buddypress_groups extends acf_field {
 		$this->defaults = array(
 			'groups' => 0,
 			'multiple' => 1,
+			'return_format' => 'id',
 		);
 
 
 		// do not delete!
-    	parent::__construct();
+		parent::__construct();
 
 
-    	// settings
+		// settings
 		$this->settings = array(
 			'path' => apply_filters('acf/helpers/get_path', __FILE__),
 			'dir' => apply_filters('acf/helpers/get_dir', __FILE__),
@@ -104,6 +105,28 @@ class acf_field_buddypress_groups extends acf_field {
 			'choices'	=>	array(
 				1	=>	__("Yes",'acf'),
 				0	=>	__("No",'acf'),
+			),
+			'layout'	=>	'horizontal',
+		));
+
+		?>
+	</td>
+</tr>
+
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Return Format",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+
+		do_action('acf/create_field', array(
+			'type'	=>	'radio',
+			'name'	=>	'fields['.$key.'][return_format]',
+			'value'	=>	$field['return_format'],
+			'choices'	=>	array(
+				'id'	    =>	__("Group ID",'acf'),
+				'object'	=>	__("Group Object",'acf'),
 			),
 			'layout'	=>	'horizontal',
 		));
@@ -338,16 +361,46 @@ class acf_field_buddypress_groups extends acf_field {
 
 	function format_value_for_api( $value, $post_id, $field )
 	{
-		// defaults?
-		/*
-		$field = array_merge($this->defaults, $field);
-		*/
-
-		// perhaps use $field['preview_size'] to alter the $value?
 
 
-		// Note: This function can be removed if not used
+		// bail early if no value
+		if( empty($value) ) {
+
+			return $value;
+
+		}
+
+
+		// force value to array
+		$value = acf_force_type_array( $value );
+
+
+		// convert values to int
+		$value = array_map('intval', $value);
+
+
+		// load groups if needed
+		if( $field['return_format'] == 'object' ) {
+
+			// get groups
+			$value = groups_get_groups(array(
+				'include' => $value
+			));
+
+		}
+
+
+		// convert back from array if neccessary
+		if( !$field['multiple'] ) {
+
+			$value = array_shift($value);
+
+		}
+
+
+		// return
 		return $value;
+
 	}
 
 

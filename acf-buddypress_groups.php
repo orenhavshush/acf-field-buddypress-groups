@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Buddypress Groups
 Plugin URI: https://github.com/locomo/acf-field-buddypress-groups
 Description: Buddypress Groups field for Advanced Custom Fields
-Version: 1.0.2
+Version: 1.0.3
 Author: Satellite Jones
 Author URI: http://satellitejones.com
 License: GPLv2 or later

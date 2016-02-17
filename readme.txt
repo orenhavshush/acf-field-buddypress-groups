@@ -11,7 +11,7 @@ SHORT_DESCRIPTION
 
 == Description ==
 
-This plugin provides a Buddypress Groups field for Advanced Custom Fields. The field can be configured to display all groups or only groups of which the active user is a member. You can choose to return the Group ID(s) or Group object(s) (ACF 5 only).
+This plugin provides a Buddypress Groups field for Advanced Custom Fields. The field can be configured to display all groups or only groups of which the active user is a member. You can choose to return the Group ID(s) or Group object(s).
 
 = Compatibility =
 
@@ -27,6 +27,9 @@ This ACF field type is compatible with:
 4. Please refer to the description for more info regarding the field type settings
 
 == Changelog ==
+
+= 1.0.3 =
+* Added return_format option for ACF 4
 
 = 1.0.2 =
 * Added return_format option - can choose to return the group ID or group object  (ACF 5 only)
