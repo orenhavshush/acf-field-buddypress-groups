@@ -23,9 +23,10 @@ class acf_field_buddypress_groups extends acf_field {
 		$this->label = __('Buddypress Groups');
 		$this->category = __("Relational",'acf'); // Basic, Content, Choice, etc
 		$this->defaults = array(
-			'groups' => 0,
-			'multiple' => 1,
-			'return_format' => 'id',
+			'groups'         => 0,
+			'multiple'       => 1,
+			'return_format'  => 'id',
+			'allow_null'     => 0
 		);
 
 
@@ -134,6 +135,29 @@ class acf_field_buddypress_groups extends acf_field {
 		?>
 	</td>
 </tr>
+
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Allow Null?",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+
+		do_action('acf/create_field', array(
+			'type'	=>	'radio',
+			'name'	=>	'fields['.$key.'][allow_null]',
+			'value'	=>	$field['allow_null'],
+			'choices'	=>	array(
+				1	=>	__("Yes",'acf'),
+				0	=>	__("No",'acf'),
+			),
+			'layout'	=>	'horizontal',
+		));
+
+		?>
+	</td>
+</tr>
+
 		<?php
 
 	}

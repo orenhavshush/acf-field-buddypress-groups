@@ -47,6 +47,7 @@ class acf_field_buddypress_groups extends acf_field {
 			'groups'            => 0,
 			'multiple'          => 1,
 			'return_format'     => 'id',
+			'allow_null'        => 0
 		);
 
 
@@ -128,10 +129,19 @@ class acf_field_buddypress_groups extends acf_field {
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
 			'choices'		=> array(
-				'id'			=> __("Group ID",'acacf-buddypress_groupsf'),
+				'id'			=> __("Group ID",'acf-buddypress_groups'),
 				'object'		=> __("Group Object",'acf-buddypress_groups'),
 			),
 			'layout'	=>	'horizontal',
+		));
+
+		// allow_null
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Allow Null?','acf-buddypress_groups'),
+			'instructions'	=> '',
+			'name'			=> 'allow_null',
+			'type'			=> 'true_false',
+			'ui'			=> 1,
 		));
 
 	}
