@@ -28,6 +28,9 @@ This ACF field type is compatible with:
 
 == Changelog ==
 
+= 1.0.6 =
+* fix ui ajax errors on backend
+
 = 1.0.5 =
 * Added 'allow_null' setting for the select list field
 

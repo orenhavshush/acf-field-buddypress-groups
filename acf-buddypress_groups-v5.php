@@ -192,10 +192,12 @@ class acf_field_buddypress_groups extends acf_field {
 		// Change Field into a select
 		$field['type'] = 'select';
 		$field['choices'] = array();
+		$field['ui'] = 1;
+		$field['ajax'] = 0;
 
 		// set the user ID if you want to return only groups that this user is a member of.
 		$user_id = ( $field['groups'] == 1 ) ? FALSE : get_current_user_id();
-		$args = array( 'per_page' => 999, 'user_id' => $user_id );
+		$args = array( 'per_page' => 9999, 'user_id' => $user_id );
 
 		if ( bp_has_groups( $args ) ) {
 			while ( bp_groups() ) {
